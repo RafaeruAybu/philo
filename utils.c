@@ -12,6 +12,16 @@
 
 #include "philos.h"
 
+long long	get_global_time(void)
+{
+	struct timeval	te;
+	long long		milliseconds;
+
+	gettimeofday(&te, NULL);
+	milliseconds = te.tv_sec * 1000LL + te.tv_usec / 1000;
+	return (milliseconds);
+}
+
 static void	foo(char **str, int *sign)
 {
 	while ((**str == ' ') || ((**str >= 9) && (**str <= 13)))
@@ -54,8 +64,11 @@ int	ft_atoi(const char *s)
 
 void	my_printf(t_utils *all, char *str, int index, long long timestamp)
 {
+	pthread_mutex_lock(&all->print);
 	if (all->server.is_philo_dead == 0)
 		printf(str, timestamp, index);
+	if (all->dead == 0)
+		pthread_mutex_unlock(&all->print);
 }
 
 void	my_sleep(int m_second)

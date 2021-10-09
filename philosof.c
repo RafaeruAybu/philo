@@ -16,14 +16,12 @@ void	*philosof(void *in)
 {
 	int				local_id;
 	int				local_time_to_eat;
-	struct timeval	te;
 	long long		milliseconds;
 	t_utils			*all;
 
 	all = (t_utils *)in;
 	local_id = all->philos.counter++;
-	gettimeofday(&te, NULL);
-	milliseconds = te.tv_sec * 1000LL + te.tv_usec / 1000;
+	milliseconds = get_global_time();
 	all->server.ph_status.array[local_id] = milliseconds;
 	local_time_to_eat = all->number_of_times_each_philosopher_must_eat;
 	while (all->server.is_philo_dead != 1 && all->server.is_philos_stopped

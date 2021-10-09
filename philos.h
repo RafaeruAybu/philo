@@ -47,10 +47,12 @@ typedef struct s_utils
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
+	int 			dead;
 	int				number_of_times_each_philosopher_must_eat;
 	t_server		server;
 	t_philosofers	philos;
 	pthread_mutex_t	main;
+	pthread_mutex_t print;
 }				t_utils;
 
 int		get_args(int argc, char **argv, t_utils *all);
@@ -64,5 +66,6 @@ void	philo_think(t_utils *all, int index);
 void	my_printf(t_utils *all, char *str, int index, long long timestamp);
 void	my_sleep(int m_second);
 int		ft_atoi(const char *s);
+long long	get_global_time(void);
 
 #endif

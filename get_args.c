@@ -20,6 +20,7 @@ int	get_args(int argc, char **argv, t_utils *all)
 	all->time_to_die = ft_atoi(argv[2]);
 	all->time_to_eat = ft_atoi(argv[3]);
 	all->time_to_sleep = ft_atoi(argv[4]);
+	all->dead = 0;
 	all->number_of_times_each_philosopher_must_eat = -1;
 	if (argc == 6)
 	{
